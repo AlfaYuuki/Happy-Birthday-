@@ -1,293 +1,501 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Princess Pookie 👑</title>
-
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Princess Pookie</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Figtree:wght@400;500;600;700&display=swap">
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* Layout: one centered letter-card on a soft rose ground; a gift-opening overlay sits on top until tapped. */
+:root {
+  --bg: #fbeff3;
+  --bg-glow: #f3e3ff;
+  --surface: #fffaf7;
+  --ink: #3b2142;
+  --muted: #76607f;
+  --accent: #b0457f;
+  --accent-ink: #ffffff;
+  --gold: #a97f25;
+  --gold-soft: #e8cf8f;
+  --line: #e9d3dc;
+  --panel: #f8ecf6;
+  --shadow: rgba(92, 40, 90, 0.16);
+  --font-display: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
+  --font-body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1b0f22;
+    --bg-glow: #3a1c47;
+    --surface: #2a1834;
+    --ink: #f7eaf0;
+    --muted: #bfa6c8;
+    --accent: #f08cbc;
+    --accent-ink: #2a1030;
+    --gold: #e6bf69;
+    --gold-soft: #8a6a25;
+    --line: #4b3158;
+    --panel: #34203f;
+    --shadow: rgba(0, 0, 0, 0.5);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1b0f22;
+  --bg-glow: #3a1c47;
+  --surface: #2a1834;
+  --ink: #f7eaf0;
+  --muted: #bfa6c8;
+  --accent: #f08cbc;
+  --accent-ink: #2a1030;
+  --gold: #e6bf69;
+  --gold-soft: #8a6a25;
+  --line: #4b3158;
+  --panel: #34203f;
+  --shadow: rgba(0, 0, 0, 0.5);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
 
 body {
   min-height: 100vh;
-  font-family: "Trebuchet MS", sans-serif;
-  background: linear-gradient(135deg, #ffe0f0, #e8d9ff, #fff0f6);
-  color: #713a82;
-  text-align: center;
+  margin: 0;
+  padding-block: 28px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  background: radial-gradient(ellipse at 50% 0%, var(--bg-glow) 0%, var(--bg) 62%) var(--bg);
+  background-attachment: fixed;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
   overflow-x: hidden;
 }
 
-.container {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 25px 15px;
-}
+.page { display: grid; place-items: center; min-height: calc(100vh - 56px); }
 
 .card {
-  position: relative;
-  width: 100%;
-  max-width: 620px;
-  padding: 38px 22px;
-  border: 3px solid #ffffff;
-  border-radius: 30px;
-  background: rgba(255, 255, 255, 0.76);
-  box-shadow: 0 15px 50px #bd79cf44;
-  animation: appear 1s ease;
+  width: min(680px, 100%);
+  min-width: 0;
+  padding: clamp(30px, 6vw, 56px) clamp(20px, 5vw, 52px);
+  text-align: center;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  box-shadow: 0 30px 80px -30px var(--shadow), inset 0 0 0 6px var(--surface), inset 0 0 0 7px var(--gold-soft);
 }
 
-.crown {
-  font-size: 65px;
-  animation: float 2s ease-in-out infinite;
+.crown { width: 74px; height: auto; color: var(--gold); display: block; margin: 0 auto 6px; animation: bob 4s ease-in-out infinite; }
+
+.eyebrow {
+  margin: 0 0 10px;
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
 }
+
+h1, h2 { font-family: var(--font-display); text-wrap: balance; margin: 0; }
 
 h1 {
-  margin: 15px 0 10px;
-  color: #d63384;
-  font-size: clamp(30px, 7vw, 48px);
-  text-shadow: 2px 3px 0 #ffd4ed;
+  color: var(--accent);
+  font-size: clamp(46px, 11vw, 78px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.01em;
 }
 
 .subtitle {
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-family: var(--font-display);
+  font-size: clamp(20px, 4vw, 26px);
+  font-style: italic;
+  font-weight: 500;
+}
+
+.subtitle.pill {
   display: inline-block;
-  padding: 9px 14px;
-  border-radius: 20px;
-  background: #f6d8ff;
-  color: #8b299e;
-  font-size: clamp(15px, 4vw, 19px);
-  font-weight: bold;
+  padding: 6px 22px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--accent);
 }
 
-h2 {
-  margin: 22px 0 12px;
-  color: #9c45bc;
-  font-size: 25px;
-}
+.cake { margin: 26px 0 4px; font-size: 68px; line-height: 1; animation: bob 1.8s ease-in-out infinite; }
+.hail { margin: 0; color: var(--accent); font-family: var(--font-display); font-size: clamp(24px, 5vw, 30px); font-weight: 700; }
+.sparks { margin: 0 0 10px; font-size: 40px; line-height: 1; }
 
-.message {
-  margin: 16px auto;
-  max-width: 470px;
-  font-size: 17px;
-  line-height: 1.8;
-}
-
-.cake {
-  margin: 22px 0;
-  font-size: 75px;
-  animation: bounce 1.5s infinite;
-}
-
-button {
-  margin: 10px 5px;
-  padding: 14px 22px;
-  border: none;
-  border-radius: 30px;
-  background: linear-gradient(90deg, #e84393, #a855d9);
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  box-shadow: 0 6px 18px #d65bb555;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-button:hover {
-  transform: translateY(-3px) scale(1.03);
-  box-shadow: 0 9px 23px #d65bb577;
-}
-
-button:active {
-  transform: scale(0.97);
-}
-
-#surprise {
-  display: none;
-  margin: 20px auto 0;
-  padding: 20px;
-  max-width: 460px;
-  border: 2px dashed #e99bd0;
-  border-radius: 20px;
-  background: #fff0f8;
-  line-height: 1.8;
-  animation: appear 0.6s ease;
-}
-
-#surprise h2 {
-  margin-top: 0;
-}
-
-footer {
-  margin-top: 25px;
-  font-size: 13px;
-  opacity: 0.8;
-}
-
-.sparkle {
+.emoji-float {
   position: fixed;
-  top: -30px;
-  z-index: 10;
+  z-index: 101;
+  left: var(--x);
+  bottom: -45px;
+  font: 27px/1 system-ui, sans-serif;
   pointer-events: none;
-  animation: fall linear forwards;
+  animation: emojiRise var(--d) ease-out forwards;
+}
+@keyframes emojiRise {
+  0% { opacity: 0; transform: translateY(0) rotate(0) scale(0.6); }
+  12% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-110vh) rotate(var(--spin)) scale(1.3); }
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0) rotate(-5deg); }
-  50% { transform: translateY(-12px) rotate(5deg); }
+.rule {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: min(300px, 100%);
+  margin: 28px auto;
+  color: var(--gold);
 }
+.rule::before, .rule::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-soft)); }
+.rule::after { transform: scaleX(-1); }
+.rule svg { width: 16px; height: 16px; flex: none; }
 
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-9px); }
+.greeting { font-size: clamp(28px, 6vw, 38px); font-weight: 600; margin-bottom: 18px; }
+
+.message { max-width: 520px; margin: 0 auto; }
+.message p { margin: 0 0 16px; color: var(--ink); }
+.message .lead { font-size: 18px; }
+
+.dua {
+  margin: 26px auto 0;
+  max-width: 520px;
+  padding: 20px 22px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  text-align: left;
 }
+.dua h2 { font-size: 22px; font-weight: 600; color: var(--gold); margin-bottom: 6px; text-align: center; }
+.dua p { margin: 0; color: var(--ink); font-size: 15.5px; }
 
-@keyframes appear {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+.sign { margin: 30px 0 0; font-family: var(--font-display); font-size: 22px; font-style: italic; color: var(--accent); }
+
+.actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 30px; }
+
+.btn {
+  min-height: 48px;
+  padding: 12px 26px;
+  border: 1.5px solid var(--accent);
+  border-radius: 999px;
+  font: 600 15px/1.2 var(--font-body);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
 }
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: scale(0.97); }
+.btn:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+.btn-fill { background: linear-gradient(90deg, #c43b84, #8e4fc9); border-color: transparent; color: #fff; box-shadow: 0 10px 24px -10px #c43b84; }
+.btn-line { background: transparent; color: var(--accent); }
 
-@keyframes fall {
-  to {
-    transform: translateY(110vh) rotate(720deg);
-    opacity: 0;
-  }
+.decree {
+  max-width: 520px;
+  margin: 26px auto 0;
+  padding: 22px 22px 18px;
+  text-align: left;
+  background: var(--panel);
+  border: 1px dashed var(--gold);
+  border-radius: 18px;
+  animation: rise 0.6s ease both;
 }
+.decree h2 { text-align: center; font-size: 26px; color: var(--accent); margin-bottom: 10px; }
+.decree ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.decree li { display: grid; grid-template-columns: 22px 1fr; gap: 10px; align-items: start; }
+.decree li svg { width: 18px; height: 18px; margin-top: 5px; color: var(--gold); }
+.decree p { margin: 14px 0 0; color: var(--muted); font-size: 15px; }
 
-@media (max-width: 400px) {
-  .card {
-    padding: 30px 15px;
-  }
+.footer { margin: 28px 0 0; color: var(--muted); font-size: 13px; }
 
-  .message {
-    font-size: 15px;
-  }
+/* Gift intro */
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  overflow-y: auto;
+  padding-block: max(24px, env(safe-area-inset-top, 0px)) max(24px, env(safe-area-inset-bottom, 0px));
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  text-align: center;
+  background: radial-gradient(ellipse at 50% 30%, var(--bg-glow) 0%, var(--bg) 70%) var(--bg);
+  transition: opacity 0.9s ease, visibility 0.9s ease;
 }
+.intro.leaving { opacity: 0; visibility: hidden; pointer-events: none; }
+.intro-inner { width: min(420px, 100%); }
+.intro h2 { font-size: clamp(38px, 9vw, 54px); font-weight: 700; color: var(--accent); line-height: 1.05; }
+.intro p.copy { margin: 12px auto 22px; max-width: 320px; color: var(--muted); }
 
+.gift {
+  position: relative;
+  display: block;
+  width: 210px;
+  height: 200px;
+  margin: 0 auto 14px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  animation: bob 3s ease-in-out infinite;
+  -webkit-tap-highlight-color: transparent;
+}
+.gift:focus-visible { outline: 3px solid var(--gold); outline-offset: 6px; border-radius: 12px; }
+.gift-shadow { position: absolute; left: 12%; bottom: 0; width: 76%; height: 18px; border-radius: 50%; background: var(--shadow); filter: blur(9px); }
+.gift-box {
+  position: absolute; left: 20px; right: 20px; bottom: 10px; height: 118px;
+  border: 2px solid var(--gold); border-radius: 8px 8px 14px 14px;
+  background: linear-gradient(135deg, #e0679f, #a53a76);
+}
+.gift-lid {
+  position: absolute; z-index: 3; left: 10px; right: 10px; bottom: 122px; height: 34px;
+  border: 2px solid var(--gold); border-radius: 8px;
+  background: linear-gradient(135deg, #ea7fb0, #b94683);
+  transform-origin: 10% 90%;
+  transition: transform 0.85s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.7s ease;
+}
+.gift-box::before, .gift-lid::before {
+  content: ""; position: absolute; top: 0; bottom: 0; left: 50%; width: 28px; transform: translateX(-50%);
+  background: linear-gradient(90deg, #f6dd9a, #c99a36, #f6dd9a);
+}
+.bow { position: absolute; left: 50%; top: -26px; width: 72px; height: 34px; transform: translateX(-50%); }
+.bow::before, .bow::after {
+  content: ""; position: absolute; top: 0; width: 34px; height: 26px;
+  border: 3px solid #b88a2a; border-radius: 80% 20% 80% 20%;
+  background: linear-gradient(135deg, #f6dd9a, #c99a36);
+}
+.bow::before { left: 0; transform: rotate(26deg); }
+.bow::after { right: 0; transform: scaleX(-1) rotate(26deg); }
+.gift-card {
+  position: absolute; z-index: 1; left: 50%; bottom: 60px; width: 110px; height: 76px; margin-left: -55px;
+  display: grid; place-items: center; padding: 6px;
+  border: 1.5px solid var(--gold); border-radius: 10px; background: var(--surface); color: var(--accent);
+  font: 600 17px/1.1 var(--font-display); opacity: 0; transform: translateY(20px) scale(0.7);
+  transition: transform 0.9s 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.5s 0.25s ease;
+}
+.gift.open { animation: none; }
+.gift.open .gift-lid { transform: translate(-30px, -96px) rotate(-30deg); opacity: 0.3; }
+.gift.open .gift-card { opacity: 1; transform: translateY(-46px) scale(1); }
+
+.hint { margin: 0; color: var(--muted); font-size: 13px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; animation: pulse 2s ease-in-out infinite; }
+
+#fx { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 100; pointer-events: none; }
+
+@keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes pulse { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
+@keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
+@media (max-width: 480px) {
+  .btn { width: 100%; }
+  .card { border-radius: 22px; }
+}
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
-  }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
 }
 </style>
-</head>
 
-<body>
-<div class="container">
-  <main class="card">
-
-    <div class="crown">👑</div>
-
-    <p style="letter-spacing: 4px; font-weight: bold;">
-      ROYAL BIRTHDAY CELEBRATION
-    </p>
-
+<main class="page">
+  <article class="card">
+    <svg class="crown" viewBox="0 0 80 56" fill="none" aria-hidden="true">
+      <path d="M8 44 L4 14 L24 28 L40 6 L56 28 L76 14 L72 44 Z" fill="currentColor" fill-opacity="0.16" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M8 44 H72 V50 H8 Z" fill="currentColor"/>
+      <circle cx="4" cy="14" r="3.5" fill="currentColor"/><circle cx="40" cy="6" r="3.5" fill="currentColor"/><circle cx="76" cy="14" r="3.5" fill="currentColor"/>
+    </svg>
+    <p class="eyebrow">A Royal Birthday Celebration</p>
     <h1>Princess Pookie</h1>
+    <p class="subtitle pill">The Patla Paikhana Queen 😂👑</p>
 
-    <div class="subtitle">
-      "The patla paikhana Queen" 😂👑
+    <div class="rule" aria-hidden="true">
+      <svg viewBox="0 0 16 16"><path d="M8 0 L10 6 L16 8 L10 10 L8 16 L6 10 L0 8 L6 6 Z" fill="currentColor"/></svg>
     </div>
 
-    <h2>🎉 HAPPY BIRTHDAY! 🎉</h2>
+    <h2 class="greeting">Happy Birthday, Auntie!</h2>
 
-    <p class="message">
-      To the most iconic queen in the entire kingdom! 💖
-      <br>
-      Today, the throne is yours, the crown is shining,
-      and the whole kingdom is celebrating YOU!
-      <br>
-      May your day be filled with happiness, laughter,
-      love, delicious cake, and unforgettable memories. 🌸
-    </p>
-
-    <div class="cake">🎂</div>
-
-    <p style="font-size: 19px; font-weight: bold;">
-      All hail the birthday queen! 💗
-    </p>
-
-    <button onclick="openSurprise()">
-      💌 Open Your Surprise
-    </button>
-
-    <button onclick="celebrate()">
-      🎊 MORE CONFETTI!
-    </button>
-
-    <div id="surprise">
-      <h2>👑 Royal Announcement 👑</h2>
-
-      <p>
-        Attention, everyone! 📢
-        <br><br>
-        Her Royal Highness, Princess Pookie,
-        <b>The Patla Paikhana Queen</b>,
-        has officially leveled up! 🎂😂
-        <br><br>
-        Royal responsibilities for today:
-        <br>
-        🍰 Eat cake like royalty.
-        <br>
-        💖 Receive unlimited love.
-        <br>
-        😂 Laugh at every silly joke.
-        <br>
-        👑 Rule the kingdom with fabulousness!
-        <br><br>
-        Happy Birthday, Auntie!
-        May Allah bless you with happiness,
-        good health, peace, and countless beautiful moments. 🤲💗
-        <br><br>
-        <b>With lots of love, from your favorite troublemaker! 😎</b>
-      </p>
+    <div class="message">
+      <p class="lead">To the most iconic queen in the entire kingdom, the star of every gathering, and the owner of a truly unforgettable royal personality. 💖</p>
+      <p>Today the throne is yours, the crown is shining, and the whole kingdom is celebrating you. May your day be full of laughter, sweet surprises, beautiful memories, and enough cake to keep the whole royal court happy. 🌸</p>
+      <p>May every new year bring you more happiness, peace, and success, and countless reasons to smile. Keep shining in your own wonderfully chaotic way, Your Majesty.</p>
     </div>
 
-    <footer>
-      Made with 💖, laughter 😂, and royal-level mischief 👑
-    </footer>
+    <section class="dua" aria-labelledby="dua-title">
+      <h2 id="dua-title">A Special Dua</h2>
+      <p>May Allah bless you with good health, happiness, barakah, protection, and success in this life and the Hereafter. May He accept your duas, keep you surrounded by sincere people, and fill the days ahead with goodness. Ameen.</p>
+    </section>
 
-  </main>
-</div>
+    <div class="cake" aria-hidden="true">🎂</div>
+    <p class="hail">All hail the birthday queen! 💗</p>
+
+    <div class="actions">
+      <button class="btn btn-fill" id="decreeBtn" type="button" aria-expanded="false" aria-controls="decree">💌 Open Your Surprise</button>
+      <button class="btn btn-line" id="confettiBtn" type="button">🎊 More Confetti!</button>
+    </div>
+
+    <section class="decree" id="decree" hidden aria-labelledby="decree-title">
+      <h2 id="decree-title">Royal Announcement</h2>
+      <p style="margin:0 0 12px;color:var(--ink)">Attention, everyone! 📢 Her Royal Highness, Princess Pookie, <strong>The Patla Paikhana Queen</strong>, has officially leveled up! 🎂😂</p>
+      <p style="margin:0 0 8px;color:var(--ink);font-weight:600">Royal responsibilities for today:</p>
+      <ul>
+        <li><span aria-hidden="true">🍰</span><span>Eat cake like royalty.</span></li>
+        <li><span aria-hidden="true">💖</span><span>Receive unlimited love.</span></li>
+        <li><span aria-hidden="true">😂</span><span>Laugh at every silly joke.</span></li>
+        <li><span aria-hidden="true">👑</span><span>Rule the kingdom with fabulousness.</span></li>
+      </ul>
+      <p>Signed with lots of love by your favorite troublemaker. 😎</p>
+    </section>
+
+    <p class="sign">With love, from your favorite troublemaker</p>
+    <p class="footer">Made with love, laughter, and a little royal mischief.</p>
+  </article>
+</main>
+
+<section class="intro" id="intro" aria-label="Birthday gift">
+  <div class="intro-inner">
+    <p class="sparks" aria-hidden="true">✨ 💗 ✨</p>
+    <p class="eyebrow">A little royal surprise</p>
+    <h2>For Princess Pookie</h2>
+    <p class="copy">A special gift for the queen of the day. Ready for some birthday magic?</p>
+    <button class="gift" id="gift" type="button" aria-label="Tap to open your birthday gift">
+      <span class="gift-shadow" aria-hidden="true"></span>
+      <span class="gift-card" aria-hidden="true">Happy Birthday</span>
+      <span class="gift-box" aria-hidden="true"></span>
+      <span class="gift-lid" aria-hidden="true"><span class="bow"></span></span>
+    </button>
+    <p class="hint" id="hint">Tap the gift to open</p>
+    <p id="status" aria-live="polite" style="position:absolute;left:-9999px"></p>
+  </div>
+</section>
+
+<canvas id="fx" aria-hidden="true"></canvas>
 
 <script>
-function celebrate() {
-  const emojis = ["🎉", "💖", "✨", "👑", "🌸", "🎊", "💕"];
+(() => {
+  "use strict";
+  const $ = id => document.getElementById(id);
+  const intro = $("intro"), gift = $("gift"), hint = $("hint"), status = $("status");
+  const decree = $("decree"), decreeBtn = $("decreeBtn"), confettiBtn = $("confettiBtn");
+  const canvas = $("fx"), ctx = canvas.getContext("2d");
+  const reduced = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const rand = (a, b) => Math.random() * (b - a) + a;
+  const COLORS = ["#e0679f", "#f2c14e", "#9b7bea", "#3fd0bd", "#ff7a6b", "#6fa8ff", "#ffffff", "#f6dd9a"];
+  let parts = [], raf = 0, dpr = 1, opened = false, audio = null;
 
-  for (let i = 0; i < 65; i++) {
-    const item = document.createElement("span");
-
-    item.className = "sparkle";
-    item.textContent =
-      emojis[Math.floor(Math.random() * emojis.length)];
-
-    item.style.left = Math.random() * 100 + "vw";
-    item.style.fontSize = (16 + Math.random() * 22) + "px";
-    item.style.animationDuration = (2 + Math.random() * 4) + "s";
-    item.style.animationDelay = Math.random() * 1.5 + "s";
-
-    document.body.appendChild(item);
-
-    item.addEventListener("animationend", () => item.remove());
+  function size() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = innerWidth * dpr; canvas.height = innerHeight * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
-}
+  size(); addEventListener("resize", size);
 
-function openSurprise() {
-  const surprise = document.getElementById("surprise");
+  function burst(x, y, n) {
+    for (let i = 0; i < n; i++) {
+      const a = rand(0, Math.PI * 2), s = rand(3, 11);
+      parts.push({ x, y, vx: Math.cos(a) * s, vy: Math.sin(a) * s - 3, w: rand(5, 9), h: rand(8, 15),
+        r: rand(0, 6.28), vr: rand(-0.3, 0.3), c: COLORS[(Math.random() * COLORS.length) | 0], life: rand(70, 120), g: 0.2, shape: Math.random() < 0.25 ? 1 : 0 });
+    }
+  }
+  function rain(n) {
+    for (let i = 0; i < n; i++) {
+      parts.push({ x: rand(0, innerWidth), y: rand(-innerHeight * 0.5, -10), vx: rand(-1.2, 1.2), vy: rand(1.5, 4),
+        w: rand(5, 9), h: rand(10, 18), r: rand(0, 6.28), vr: rand(-0.15, 0.15), c: COLORS[(Math.random() * COLORS.length) | 0], life: rand(180, 260), g: 0.02, shape: 0 });
+    }
+  }
+  function tick() {
+    ctx.clearRect(0, 0, innerWidth, innerHeight);
+    parts = parts.filter(p => p.life > 0 && p.y < innerHeight + 40);
+    for (const p of parts) {
+      p.vy += p.g; p.vx *= 0.985; p.x += p.vx; p.y += p.vy; p.r += p.vr; p.life--;
+      ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.r);
+      ctx.globalAlpha = Math.min(1, p.life / 40); ctx.fillStyle = p.c;
+      if (p.shape) { ctx.beginPath(); ctx.arc(0, 0, p.w / 2, 0, 6.28); ctx.fill(); } else { ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h); }
+      ctx.restore();
+    }
+    raf = parts.length ? requestAnimationFrame(tick) : 0;
+    if (!parts.length) ctx.clearRect(0, 0, innerWidth, innerHeight);
+  }
+  function start() { if (!raf) raf = requestAnimationFrame(tick); }
 
-  surprise.style.display = "block";
-  surprise.scrollIntoView({
-    behavior: "smooth",
-    block: "nearest"
+  function audioCtx() {
+    if (!audio) { const C = window.AudioContext || window.webkitAudioContext; if (C) { try { audio = new C(); } catch (e) {} } }
+    if (audio && audio.state === "suspended") { audio.resume().catch(() => {}); }
+    return audio;
+  }
+  function pop(delay, vol) {
+    const c = audioCtx(); if (!c) return;
+    const go = () => { try {
+      const t = c.currentTime + delay;
+      // Crack: a short burst of filtered noise, like paper and air snapping apart.
+      const len = Math.floor(c.sampleRate * 0.22), buf = c.createBuffer(1, len, c.sampleRate), d = buf.getChannelData(0);
+      for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 3);
+      const n = c.createBufferSource(), f = c.createBiquadFilter(), ng = c.createGain();
+      n.buffer = buf; f.type = "bandpass"; f.frequency.value = rand(1800, 3200); f.Q.value = 0.7;
+      ng.gain.setValueAtTime(0.9 * vol, t); ng.gain.exponentialRampToValueAtTime(0.0001, t + 0.2);
+      n.connect(f); f.connect(ng); ng.connect(c.destination); n.start(t);
+      // Thump: a quick falling tone under the crack.
+      const o = c.createOscillator(), g = c.createGain();
+      o.type = "triangle"; o.frequency.setValueAtTime(rand(260, 340), t); o.frequency.exponentialRampToValueAtTime(70, t + 0.12);
+      g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.7 * vol, t + 0.006); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.16);
+      o.connect(g); g.connect(c.destination); o.start(t); o.stop(t + 0.18);
+    } catch (e) {} };
+    // A context that went to sleep must wake before it can play.
+    if (c.state === "running") go(); else c.resume().then(go).catch(() => {});
+  }
+
+  const EMOJIS = ["🎉", "🎊", "✨", "💖", "🌸", "👑", "🎀", "💐", "⭐", "🥳"];
+  function emojiRain(n) {
+    for (let i = 0; i < n; i++) {
+      setTimeout(() => {
+        const e = document.createElement("span");
+        e.className = "emoji-float";
+        e.textContent = EMOJIS[(Math.random() * EMOJIS.length) | 0];
+        e.style.setProperty("--x", rand(2, 94) + "vw");
+        e.style.setProperty("--d", rand(2.7, 5) + "s");
+        e.style.setProperty("--spin", rand(-300, 300) + "deg");
+        document.body.appendChild(e);
+        setTimeout(() => e.remove(), 5500);
+      }, i * 95);
+    }
+  }
+
+  function celebrate(big) {
+    pop(0, 1); // first pop fires inside the tap itself
+    if (reduced()) { burst(innerWidth / 2, innerHeight * 0.35, 40); start(); emojiRain(6); return; }
+    emojiRain(big ? 32 : 18);
+    const spots = [[0.12, 0.28], [0.88, 0.28], [0.5, 0.18], [0.25, 0.5], [0.75, 0.5], [0.06, 0.7], [0.94, 0.7]];
+    const count = big ? spots.length : 4;
+    for (let i = 0; i < count; i++) {
+      const [px, py] = spots[i];
+      setTimeout(() => { burst(innerWidth * px, innerHeight * py, big ? 46 : 34); start(); if (i) pop(0, 0.65); }, i * 110);
+    }
+    rain(big ? 130 : 70); start();
+  }
+
+  function openGift() {
+    if (opened) return;
+    opened = true;
+    audioCtx(); // unlock sound inside the tap, before the delayed bursts
+    pop(0, 1);
+    gift.disabled = true; gift.classList.add("open");
+    hint.textContent = "Surprise! Happy Birthday!"; hint.style.animation = "none";
+    status.textContent = "The gift is open. The celebration has started.";
+    setTimeout(() => celebrate(true), 380);
+    setTimeout(() => intro.classList.add("leaving"), 1500);
+    setTimeout(() => { intro.hidden = true; }, 2500);
+  }
+
+  gift.addEventListener("click", openGift);
+  confettiBtn.addEventListener("click", () => celebrate(false));
+  decreeBtn.addEventListener("click", () => {
+    const show = decree.hidden;
+    decree.hidden = !show;
+    decreeBtn.setAttribute("aria-expanded", String(show));
+    decreeBtn.textContent = show ? "Close the Decree" : "Read the Royal Decree";
+    if (show) { celebrate(false); decree.scrollIntoView({ behavior: reduced() ? "auto" : "smooth", block: "nearest" }); }
   });
-
-  celebrate();
-}
+})();
 </script>
-</body>
-</html>
+
+</body></html>
