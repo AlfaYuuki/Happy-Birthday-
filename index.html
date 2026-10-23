@@ -1,0 +1,293 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Princess Pookie 👑</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  font-family: "Trebuchet MS", sans-serif;
+  background: linear-gradient(135deg, #ffe0f0, #e8d9ff, #fff0f6);
+  color: #713a82;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 25px 15px;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  max-width: 620px;
+  padding: 38px 22px;
+  border: 3px solid #ffffff;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.76);
+  box-shadow: 0 15px 50px #bd79cf44;
+  animation: appear 1s ease;
+}
+
+.crown {
+  font-size: 65px;
+  animation: float 2s ease-in-out infinite;
+}
+
+h1 {
+  margin: 15px 0 10px;
+  color: #d63384;
+  font-size: clamp(30px, 7vw, 48px);
+  text-shadow: 2px 3px 0 #ffd4ed;
+}
+
+.subtitle {
+  display: inline-block;
+  padding: 9px 14px;
+  border-radius: 20px;
+  background: #f6d8ff;
+  color: #8b299e;
+  font-size: clamp(15px, 4vw, 19px);
+  font-weight: bold;
+}
+
+h2 {
+  margin: 22px 0 12px;
+  color: #9c45bc;
+  font-size: 25px;
+}
+
+.message {
+  margin: 16px auto;
+  max-width: 470px;
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+.cake {
+  margin: 22px 0;
+  font-size: 75px;
+  animation: bounce 1.5s infinite;
+}
+
+button {
+  margin: 10px 5px;
+  padding: 14px 22px;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(90deg, #e84393, #a855d9);
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 6px 18px #d65bb555;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+button:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 9px 23px #d65bb577;
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+#surprise {
+  display: none;
+  margin: 20px auto 0;
+  padding: 20px;
+  max-width: 460px;
+  border: 2px dashed #e99bd0;
+  border-radius: 20px;
+  background: #fff0f8;
+  line-height: 1.8;
+  animation: appear 0.6s ease;
+}
+
+#surprise h2 {
+  margin-top: 0;
+}
+
+footer {
+  margin-top: 25px;
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+.sparkle {
+  position: fixed;
+  top: -30px;
+  z-index: 10;
+  pointer-events: none;
+  animation: fall linear forwards;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(-5deg); }
+  50% { transform: translateY(-12px) rotate(5deg); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-9px); }
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 400px) {
+  .card {
+    padding: 30px 15px;
+  }
+
+  .message {
+    font-size: 15px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+  <main class="card">
+
+    <div class="crown">👑</div>
+
+    <p style="letter-spacing: 4px; font-weight: bold;">
+      ROYAL BIRTHDAY CELEBRATION
+    </p>
+
+    <h1>Princess Pookie</h1>
+
+    <div class="subtitle">
+      "The patla paikhana Queen" 😂👑
+    </div>
+
+    <h2>🎉 HAPPY BIRTHDAY! 🎉</h2>
+
+    <p class="message">
+      To the most iconic queen in the entire kingdom! 💖
+      <br>
+      Today, the throne is yours, the crown is shining,
+      and the whole kingdom is celebrating YOU!
+      <br>
+      May your day be filled with happiness, laughter,
+      love, delicious cake, and unforgettable memories. 🌸
+    </p>
+
+    <div class="cake">🎂</div>
+
+    <p style="font-size: 19px; font-weight: bold;">
+      All hail the birthday queen! 💗
+    </p>
+
+    <button onclick="openSurprise()">
+      💌 Open Your Surprise
+    </button>
+
+    <button onclick="celebrate()">
+      🎊 MORE CONFETTI!
+    </button>
+
+    <div id="surprise">
+      <h2>👑 Royal Announcement 👑</h2>
+
+      <p>
+        Attention, everyone! 📢
+        <br><br>
+        Her Royal Highness, Princess Pookie,
+        <b>The Patla Paikhana Queen</b>,
+        has officially leveled up! 🎂😂
+        <br><br>
+        Royal responsibilities for today:
+        <br>
+        🍰 Eat cake like royalty.
+        <br>
+        💖 Receive unlimited love.
+        <br>
+        😂 Laugh at every silly joke.
+        <br>
+        👑 Rule the kingdom with fabulousness!
+        <br><br>
+        Happy Birthday, Auntie!
+        May Allah bless you with happiness,
+        good health, peace, and countless beautiful moments. 🤲💗
+        <br><br>
+        <b>With lots of love, from your favorite troublemaker! 😎</b>
+      </p>
+    </div>
+
+    <footer>
+      Made with 💖, laughter 😂, and royal-level mischief 👑
+    </footer>
+
+  </main>
+</div>
+
+<script>
+function celebrate() {
+  const emojis = ["🎉", "💖", "✨", "👑", "🌸", "🎊", "💕"];
+
+  for (let i = 0; i < 65; i++) {
+    const item = document.createElement("span");
+
+    item.className = "sparkle";
+    item.textContent =
+      emojis[Math.floor(Math.random() * emojis.length)];
+
+    item.style.left = Math.random() * 100 + "vw";
+    item.style.fontSize = (16 + Math.random() * 22) + "px";
+    item.style.animationDuration = (2 + Math.random() * 4) + "s";
+    item.style.animationDelay = Math.random() * 1.5 + "s";
+
+    document.body.appendChild(item);
+
+    item.addEventListener("animationend", () => item.remove());
+  }
+}
+
+function openSurprise() {
+  const surprise = document.getElementById("surprise");
+
+  surprise.style.display = "block";
+  surprise.scrollIntoView({
+    behavior: "smooth",
+    block: "nearest"
+  });
+
+  celebrate();
+}
+</script>
+</body>
+</html>
